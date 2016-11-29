@@ -36,6 +36,7 @@ def profile(request):
     except ObjectDoesNotExist:
         result['message'] = 'Can not find user.'
     else:
+        result['id'] = user.id
         result['name'] = user.name
         result['age'] = user.age
         result['sex'] = user.sex
@@ -71,19 +72,44 @@ def physiological(request):
         ht = user.heartbeat_set.all()
         result['heartbeat'] = random.choice(ht).heartbeat
 
+        # breath
         breath = user.breath_set.all()
         result['breath'] = random.choice(breath).breath
 
+        # blood pressure
         bloodpressure = user.bloodpressure_set.all()
-        result['bloodpressure'] = random.choice(bloodpressure).bloodpressure
+        result['blood_pressure'] = random.choice(bloodpressure).bloodpressure
 
+        # body temperature
         bodytemperature = user.bodytemperature_set.all()
-        result['bodytemperature'] = random.choice(bodytemperature).bodytemperature
+        result['body_temperature'] = random.choice(bodytemperature).bodytemperature
 
+        # indoor behavior information
         result['leave'] = user.indoorbehavior.leave
-        result['countleave'] = user.indoorbehavior.countleave
+        result['count_leave'] = user.indoorbehavior.countleave
         result['call'] = user.indoorbehavior.call
-        result['countcall'] = user.indoorbehavior.countcall
+        result['count_call'] = user.indoorbehavior.countcall
+
+        # wristband
+        result['wristband_power'] = user.wristband.power
+
+        # mattress
+        result['mattress_power'] = user.mattress.power
+
+        # walk steps
+        result['walk_steps'] = user.behavior.steps
+
+        # blood oxygen
+        bloodoxygen = user.bloodoxygen_set.all()
+        result['blood_oxygen'] = random.choice(bloodoxygen).value
+
+        # glycemia
+        glycemia = user.glycemia_set.all()
+        result['glycemia'] = random.choice(glycemia).value
+
+        # uric acid
+        uric_acid = user.uricacid_set.all()
+        result['uric_acid'] = random.choice(uric_acid).value
 
         result['result'] = 'success'
         result['message'] = 'Success'

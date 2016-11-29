@@ -9,24 +9,77 @@
 ### REST API
 
 #### POST:
-1. http://localhost:8000/api/userlist/  => get user id list
-2. http://localhost:8000/api/profile/ with { 'id': _number_ } => get id=1 user name, breath, heartbeat, bloodpressure, bodytemperature. Every physiological info data will random choice.
+1. api/userlist/  => get user id list
+
     - success:
     ```
     {
-        "bloodpressure": 104,
-        "name": "Justin Morgan",
-        "bodytemperature": "36.9",
-        "breath": 15,
-        "result": "success",
-        "heartbeat": 84,
-        "message": "Success"
+        "list": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ]
+    }
+    ```
+    代表有6個病患資料
+
+2. api/profile/ with { 'id': _number_ } => get id=_number_ patient's info
+    - success:
+    ```
+    {
+      "name": "Elizabeth Pitts",
+      "weight": "52",
+      "age": "39",
+      "number": "1",
+      "sex": "M",
+      "contact": "553-039-1072",
+      "result": "success",
+      "address": "0142 King Meadow Suite 646\nWilliamsfurt, TN 18039-1802",
+      "message": "Success",
+      "height": "171",
+      "id": 1,
+      "room": "天龍房"
     }
     ```
 
     - failed:
     ```
     }
+        "message": "Can not find user.",
+        "result": "error"
+    }
+    ```
+
+3. api/physiological/ with {'id': _number_ } => get id=_number_ patient's physiological info
+
+    - success:
+    ```
+    {
+        "blood_pressure": 102,
+        "uric_acid": "6.8",
+        "body_temperature": "37.2",
+        "walk_steps": 1308,
+        "leave": false,
+        "count_call": 0,
+        "count_leave": 25,
+        "blood_oxygen": "93",
+        "breath": 15,
+        "call": false,
+        "result": "success",
+        "glycemia": "99",
+        "wristband_power": true,
+        "heartbeat": 104,
+        "message": "Success",
+        "mattress_power": true
+    }
+    ```
+
+    - failed:
+    ```
+    {
         "message": "Can not find user.",
         "result": "error"
     }

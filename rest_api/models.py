@@ -80,6 +80,24 @@ class BloodPressure(models.Model):
         db_table = 'BloodPressure'
 
 
+class BloodOxygen(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User)
+    value = models.CharField(_('blood oxygen value'), max_length=3, blank=True)
+
+
+class Glycemia(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User)
+    value = models.CharField(_('glycemia'), max_length=3, blank=True)
+
+
+class UricAcid(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User)
+    value = models.CharField(_('uric acid'), max_length=6, blank=True)
+
+
 class BodyTemperature(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User)
@@ -97,7 +115,7 @@ class BodyTemperature(models.Model):
 
 class Behavior(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     steps = models.IntegerField(_('User walk steps'), default=0)
 
     class Meta:

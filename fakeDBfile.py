@@ -6,6 +6,7 @@ from faker import Factory
 # database model
 from rest_api.models import User, HeartBeat, Breath, BloodPressure, BodyTemperature
 from rest_api.models import Behavior, Wristband, Mattress, IndoorBehavior
+from rest_api.models import BloodOxygen, Glycemia, UricAcid
 
 # Django exceptions
 from django.core.exceptions import ObjectDoesNotExist
@@ -74,6 +75,21 @@ for x in range(6):
         # 36.8±0.7℃
         bodytemperature = BodyTemperature.objects.create(
             bodytemperature=(36.8 + random.randrange(-7, 7)/10.0), user=u
+        )
+
+        # blood oxygen 90 ~ 95
+        bloodoxygen = BloodOxygen.objects.create(
+            value=random.randint(90, 95), user=u
+        )
+
+        # uric acid 6.0 ~ 6.9
+        uric_acid = UricAcid.objects.create(
+            value=(6.0 + random.randrange(0, 9)/10.0), user=u
+        )
+
+        # glycemia 90 - 130
+        glycemia = Glycemia.objects.create(
+            value=random.randint(90, 130), user=u
         )
 
     u.save()
