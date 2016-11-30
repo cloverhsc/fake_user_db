@@ -46,6 +46,7 @@ def profile(request):
         result['address'] = user.address
         result['number'] = user.indoorbehavior.number
         result['room'] = user.indoorbehavior.room
+        result['attend_doctor'] = user.attend_doctor
 
         result['result'] = 'success'
         result['message'] = 'Success'

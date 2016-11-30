@@ -18,6 +18,7 @@ class User(models.Model):
     height = models.CharField(_('User height'), blank=True, max_length=8)
     contact = models.CharField(_('User contact number'), blank=True, max_length=16)
     address = models.CharField(_('User contact address'), blank=True, max_length=128)
+    attend_doctor = models.CharField(_('attend doctor'), blank=True, max_length=128)
 
     USERNAME_FIELD = 'name'
     REQUIRED_FIELDS = ['name']

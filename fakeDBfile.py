@@ -25,12 +25,13 @@ for x in range(6):
     height = random.randint(150, 220)
     contact = fake.phone_number()
     address = fake.address()
+    attend_doctor = fake.name()
 
     # customer information
     u = User.objects.create(
         name=fake.name(), age=age, sex=sex,
         weight=weight, height=height, contact=contact,
-        address=address
+        address=address, attend_doctor=attend_doctor,
     )
 
     # customer walk steps information
@@ -54,7 +55,7 @@ for x in range(6):
     # customer indoor behavior info
     countleave = random.randint(0, 30)
     countcall = random.randint(0, 10)
-    number = 1
+    number = x
     room = "天龍房"
     indoor = IndoorBehavior.objects.create(
         user=u, countleave=countleave,
