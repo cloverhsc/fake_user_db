@@ -19,6 +19,9 @@ class User(models.Model):
     contact = models.CharField(_('User contact number'), blank=True, max_length=16)
     address = models.CharField(_('User contact address'), blank=True, max_length=128)
     attend_doctor = models.CharField(_('attend doctor'), blank=True, max_length=128)
+    room_number = models.CharField(_('room number'), max_length=32)
+    room_title = models.CharField(_('room title'), max_length=128)
+    bed_number = models.CharField(_('bed nomber'), max_length=3)
 
     USERNAME_FIELD = 'name'
     REQUIRED_FIELDS = ['name']
@@ -148,8 +151,6 @@ class IndoorBehavior(models.Model):
     countleave = models.IntegerField(_('how many times leave room today'), default=0)
     call = models.BooleanField(_('Need help now'), default=False)
     countcall = models.IntegerField(_('how many times use call service'), default=0)
-    number = models.CharField(_('room number'), max_length=32)
-    room = models.CharField(_('room title'), max_length=128)
 
     class Meta:
         db_table = 'IndoorBehavior'

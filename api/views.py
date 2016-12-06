@@ -6,7 +6,7 @@ from rest_framework import status
 import random
 
 # DB
-from rest_api.models import User
+from rest_api.models import User, IndoorBehavior
 
 # handle error
 from django.core.exceptions import ObjectDoesNotExist
@@ -44,8 +44,9 @@ def profile(request):
         result['contact'] = user.contact
         result['height'] = user.height
         result['address'] = user.address
-        result['number'] = user.indoorbehavior.number
-        result['room'] = user.indoorbehavior.room
+        result['room_number'] = user.room_number
+        result['room_title'] = user.room_title
+        result['bed_number'] = user.bed_number
         result['attend_doctor'] = user.attend_doctor
 
         result['result'] = 'success'
@@ -115,3 +116,38 @@ def physiological(request):
         result['result'] = 'success'
         result['message'] = 'Success'
     return Response(result, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def oncall_list(request):
+    '''
+     Find out on call paitent list and short information
+     in this floor in this build.
+    '''
+    result = {
+        'result': 'error',
+        'message': 'error',
+    }
+    list = IndoorBehavior.objects.filter(call=True)
+
+    if(len(list) == 0):
+        result['list'] = []
+        result['detail_info'] = []
+    else:
+        result['list'] = []
+        result['detail_info'] = []
+        for i in len(list):
+            name = list[i].user.name
+            id = list[i].user.id
+            room_title = list[i].user.room_title
+            room_number = list[i].user.room_number
+            bed_number = list[i].user.bed_number
+            result['list'].append(id)
+            result['detail_info'].append(
+                {
+                    'id': id, 'name': name,
+                    'room_title': room_title,
+                    'room_number': room_number,
+                    'bed_number': bed_number
+                }
+            )

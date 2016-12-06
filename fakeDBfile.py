@@ -32,6 +32,7 @@ for x in range(6):
         name=fake.name(), age=age, sex=sex,
         weight=weight, height=height, contact=contact,
         address=address, attend_doctor=attend_doctor,
+        bed_number=x, room_title='心臟科', room_number='1024'
     )
 
     # customer walk steps information
@@ -55,13 +56,8 @@ for x in range(6):
     # customer indoor behavior info
     countleave = random.randint(0, 30)
     countcall = random.randint(0, 10)
-    number = x
-    room = "天龍房"
     indoor = IndoorBehavior.objects.create(
-        user=u, countleave=countleave,
-        countcall=countcall,number=number,
-        room=room
-    )
+        user=u, countleave=countleave, countcall=countcall)
 
     for y in range(20):
         ht = HeartBeat.objects.create(

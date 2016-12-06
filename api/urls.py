@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^userlist/', views.get_list),
     url(r'^profile/', views.profile),
     url(r'^physiological/', views.physiological),
+    url(r'^oncalllist/', views.oncall_list),
 ]
