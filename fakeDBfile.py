@@ -32,7 +32,7 @@ for x in range(6):
         name=fake.name(), age=age, sex=sex,
         weight=weight, height=height, contact=contact,
         address=address, attend_doctor=attend_doctor,
-        bed_number=x, room_title='心臟科', room_number='1024'
+        bed_number=(x + 1), room_title='心臟科', room_number='1024'
     )
 
     # customer walk steps information

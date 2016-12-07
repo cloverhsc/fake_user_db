@@ -131,18 +131,15 @@ def oncall_list(request):
     list = IndoorBehavior.objects.filter(call=True)
 
     if(len(list) == 0):
-        result['list'] = []
         result['detail_info'] = []
     else:
-        result['list'] = []
         result['detail_info'] = []
-        for i in len(list):
+        for i in range(0, len(list)):
             name = list[i].user.name
             id = list[i].user.id
             room_title = list[i].user.room_title
             room_number = list[i].user.room_number
             bed_number = list[i].user.bed_number
-            result['list'].append(id)
             result['detail_info'].append(
                 {
                     'id': id, 'name': name,
@@ -151,3 +148,7 @@ def oncall_list(request):
                     'bed_number': bed_number
                 }
             )
+
+    result['result'] = 'success'
+    result['message'] = 'Success'
+    return Response(result, status=status.HTTP_200_OK)
